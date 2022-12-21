@@ -1,0 +1,83 @@
+# .terraform-docs.yml
+content: |-
+  {{ .Header }}
+  # Log Export module
+  This module creates folder level and billing account log sinks. It supports GCS, Logging Buckets, and Pub/Sub as a destination. Each destination type has a `for_each` loop and its attributes is defined as map objects. It's not mandatory to create all destination types.
+
+  Log Routing: https://cloud.google.com/logging/docs/routing/overview
+
+  Logging Buckets: https://cloud.google.com/logging/docs/buckets
+
+  ## The following describes the opinion of this module.
+  ### General
+  - Log sinks are applied at the folder level. (parent_resource_type = "folder")
+  - Each log sink has a unique SA for writer identity (unique_writer_identity = true)
+
+  ### GCS
+  - The GCS bucket storage class is being set to Coldline.
+  - Objects in the GCS bucket have a locked retention policy.
+  - Objects in the bucket will delete when the retention policy has been met.
+  - Terraform will not destroy bucket will if it contains objects.
+
+  ###Pub/Sub
+  - Pub/Sub topics is created with a pull configuration.
+  - A pull subscription is created along with a service account that is granted roles/pubsub.subscriber and roles/pubsub.viewer to the topic.
+  - If need be, the code can be altered to support push configuration, subscription labels and topic labels.
+
+  ## Options include
+
+  ### General
+  - exclusions - A list of sink exclusion filters
+  - filter - The filter to apply when exporting logs. Only log entries that match the filter are exported. Use '' to export all logs.
+  - folder_id - The folder ID of the GCP resource in which you create the log sink
+  - include_children - You may opt to include child folders in the log sinks
+  - location - the region(s) to house the data
+  - log_sink_name - Define the log sink name
+  - logging_project - The project ID where the log sink will exist
+
+  ### GCS Bucket
+  - bucket_name - The name of the bucket to create.
+  - kms_key_name - ID of a Cloud KMS key that will be used to encrypt objects inserted into this bucket. Automatic Google Cloud Storage service account for the bucket's project requires access to this encryption key.
+  - location - https://cloud.google.com/storage/docs/locations#available-locations
+  - retention_period_days - the number of days to archive an object
+
+  ### Logging Bucket
+  - location - https://cloud.google.com/storage/docs/locations#available-locations
+  - retention_days - Logs will be retained by default for this amount of time, after which they will automatically be deleted. The minimum retention period is 1 day. If this value is set to zero at bucket creation time, the default time of 30 days will be used.
+
+  ### Pub/Sub
+  - kms_key_name - ID of a Cloud KMS CryptoKey to be used to protect access to messages published on this topic. Your project's PubSub service account requires access to this encryption key.
+  - subscriber_id - Define the service account ID to give the pubsub pull subscriber service account
+  - topic_name - The name of the pubsub topic to be created and used for log entries matching the filter.
+  - pull_subscriptions - The name of the subscriptions to create and its configuration. See ./examples/terraform.tfvars for available attributes.
+
+  ### Billing Logging Bucket
+  - bucket_name - The name of an existing bucket or one created by this module that defined in var.logging_bucket
+  - billing_account - The billing accounts ID
+  - location - The location of the where var.gcs[each.key].bucket_name resides
+
+  ### Billing Pubsub
+  - topic_name - The name of an existing topic or one created by this module that defined in var.pubsub
+  - billing_account - The billing accounts ID
+
+  ### Billing Cloud Storage Bucket
+  - bucket_name - The name of an existing bucket or one created by this module that defined in var.gcs
+  - billing_account - The billing accounts ID
+
+  {{ .Requirements }}
+
+  ## Example
+  `main.tf`
+  ```hcl
+  {{ include "examples/main.tf" }}
+  ```
+  `terraform.tfavrs`
+  ```hcl
+    {{ include "examples/terraform.tfvars" }}
+    ```
+
+  {{ .Inputs }}
+
+  {{ .Modules }}
+
+  {{ .Outputs }}
