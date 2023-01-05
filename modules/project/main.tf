@@ -23,12 +23,6 @@ module "project_factory" {
   project_sa_name         = var.project_sa_name
 }
 
-resource "google_compute_shared_vpc_host_project" "shared_vpc_host" {
-  count   = var.enable_shared_vpc ? 1 : 0
-  project = module.project_factory.project_id
-
-}
-
 
 ################# project state bucket creation ##################
 
@@ -45,34 +39,21 @@ module "state_bucket" {
 
 ########## assigning roles for default SA created on the project
 
-
-
-module "tf_sa_spoke_project_iam" {
+module "tf_sa_project_iam" {
   count                = local.sa_created ? 1 : 0
-  source               = "../cloud_iam"
+  source               = "../cloud_iam/project_iam"
   project_names        = [module.project_factory.project_id]
   project_iam_bindings = var.tf_sa_project_iam_bindings
-
 }
 
 ####### assigning roles for default SA created on the tf state bucket
 
 module "tf_state_bucket_iam_bindings" {
   count           = local.is_tf_state_bucket ? 1 : 0
-  source          = "../cloud_iam/storage"
+  source          = "../cloud_iam/storage_iam"
   storage_buckets = [var.tf_state_bucket_name]
   bindings        = var.storage_bindings
   depends_on = [
-  module.project_factory]
-
-}
-
-######## assigning cloudbuild sa permissions on default sa
-
-module "spoke_project_tf_iam_bindings" {
-  count            = local.is_sa_binding ? 1 : 0
-  source           = "../cloud_iam/service_account"
-  project_id       = module.project_factory.project_id
-  service_accounts = [module.project_factory.service_account_email]
-  bindings         = var.sa_bindings
+    module.project_factory
+  ]
 }
