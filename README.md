@@ -3,6 +3,8 @@
 1. [Terraform Structure Template](#terraform-structure-template-)
 2. [Repo Description](#repo-description)
 3. [Get Started](#get-started-)
+   1. [Environments](#Environments)
+   2. [Modules](#Modules)
 
 # Terraform Structure Template 📝
 
@@ -20,8 +22,6 @@ The TPM's/Tech Lead should fork this repository and start using this as their ba
 ## Get Started 🚀
 
 The following sections will describe the usage of this repository. As explained above, one needs to fork this repository and start using it as a base for their own projects.
-
-## Structure
 
 The structure of the repo and their usage are described below -
 
@@ -96,27 +96,3 @@ The reason behind separating projects and resources into two different folders i
 In the module section, we will see what modules are currently present to use and how one can use these models.
 
 ### Modules 🔥
-
-
-## Save Readme ✨
-
-Once you're done, click on the save button to directly save your Readme to your
-project's root directory!
-
-## Usage/Examples
-
-~~~javascript
-  import Component from 'my-project'
-
-  console.log("Hello World")
-~~~
-
-## Tech Stack
-
-**Client:** TypeScript, React, Next.js
-
-**Server:** Node, Express, GraphQL
-
-## Demo
-
-Insert gif or link to demo
