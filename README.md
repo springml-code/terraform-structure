@@ -1,6 +1,6 @@
 # Table of contents
 
-1. [Terraform Structure Template](#Terraform-Structure-Template-📝)
+1. [Terraform Structure Template](#terraform-structure-template-)
 2. [Some paragraph](#paragraph1)
    1. [Sub paragraph](#subparagraph1)
 3. [Another paragraph](#paragraph2)
