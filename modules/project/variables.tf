@@ -48,12 +48,6 @@ variable "random_project_id" {
   default     = false
 }
 
-variable "enable_shared_vpc" {
-  description = "Whether to enable shared vpc or not"
-  type        = bool
-  default     = false
-}
-
 variable "grant_network_role" {
   description = "Whether to grant the project sa network role or not"
   type        = bool
