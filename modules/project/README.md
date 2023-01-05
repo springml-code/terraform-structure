@@ -13,8 +13,8 @@ No providers.
 |------|--------|---------|
 | <a name="module_project_factory"></a> [project\_factory](#module\_project\_factory) | terraform-google-modules/project-factory/google | ~> 10.1 |
 | <a name="module_state_bucket"></a> [state\_bucket](#module\_state\_bucket) | ../cloud_storage | n/a |
-| <a name="module_tf_sa_project_iam"></a> [tf\_sa\_project\_iam](#module\_tf\_sa\_project\_iam) | ../cloud_iam | n/a |
-| <a name="module_tf_state_bucket_iam_bindings"></a> [tf\_state\_bucket\_iam\_bindings](#module\_tf\_state\_bucket\_iam\_bindings) | ../cloud_iam/storage | n/a |
+| <a name="module_tf_sa_project_iam"></a> [tf\_sa\_project\_iam](#module\_tf\_sa\_project\_iam) | ../cloud_iam/project_iam | n/a |
+| <a name="module_tf_state_bucket_iam_bindings"></a> [tf\_state\_bucket\_iam\_bindings](#module\_tf\_state\_bucket\_iam\_bindings) | ../cloud_iam/storage_iam | n/a |
 
 ## Resources
 

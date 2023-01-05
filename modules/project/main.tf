@@ -41,7 +41,7 @@ module "state_bucket" {
 
 module "tf_sa_project_iam" {
   count                = local.sa_created ? 1 : 0
-  source               = "../cloud_iam"
+  source               = "../cloud_iam/project_iam"
   project_names        = [module.project_factory.project_id]
   project_iam_bindings = var.tf_sa_project_iam_bindings
 }
@@ -50,11 +50,10 @@ module "tf_sa_project_iam" {
 
 module "tf_state_bucket_iam_bindings" {
   count           = local.is_tf_state_bucket ? 1 : 0
-  source          = "../cloud_iam/storage"
+  source          = "../cloud_iam/storage_iam"
   storage_buckets = [var.tf_state_bucket_name]
   bindings        = var.storage_bindings
   depends_on = [
     module.project_factory
   ]
-
 }
