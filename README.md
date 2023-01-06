@@ -3,8 +3,9 @@
 1. [Terraform Structure Template](#terraform-structure-template-)
 2. [Repo Description](#repo-description)
 3. [Get Started](#get-started-)
-   1. [Environments](#Environments)
-   2. [Modules](#Modules)
+   1. [Environments](#Environments-)
+   2. [Groups](#Groups-)
+   3. [Modules](#Modules-)
 
 # Terraform Structure Template 📝
 
@@ -69,11 +70,11 @@ The structure of the repo and their usage are described below -
 
 The repo is divided into 3 important folders - environments, modules, and groups.
 
-### Environments
+### Environments 👍
 
 The environments folder should contain the projects and resources that you want to build. In this template the assumption is we want to create one project for different environments i.e. dev, prod, and uat. The idea of this structure is to separate the creation of projects with the creation of it's resources.
 
-Therefore, you can find the respective environment specific folders inside *environments/project* and *environments/resources*. In addition to that, there is a modules folder inside project and resources sub-directory. The purpose of this modules folder is to maintain consistency of resources across different environments. All the resources that needs to be created should be created inside modules folder by calling the root modules. For ex. if I want to create a gcs bucket resource, I will create the following module block inside *environments/resources/modules* 
+Therefore, you can find the respective environment specific folders inside *environments/project* and *environments/resources*. In addition to that, there is a modules folder inside project and resources sub-directory. The purpose of this modules folder is to maintain consistency of resources across different environments. All the resources that needs to be created should be created inside modules folder by calling the root modules. For ex. if I want to create a gcs bucket resource, I will create the following module block inside *environments/resources/modules*
 
 ```
 module "buckets" {
@@ -95,4 +96,37 @@ The reason behind separating projects and resources into two different folders i
 
 In the module section, we will see what modules are currently present to use and how one can use these models.
 
+### Groups 👀️
+
+There is a groups folder in the root directory. This is created as a template to create google groups using terraform. As groups are not part of any project and are resources that are linked to organization. You can find the environment related terraform scripts for the groups creation in different folders under groups like dev, prod, etc.
+
 ### Modules 🔥
+
+The modules folder contains different modules prepared as part of the template. The project and resources per environment should use these modules to create google cloud infra.
+
+The list of modules -
+
+
+| Module          | Description                                                                                                                                                                                                                                   |
+| ----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Alerting        | This module is for creating user metrics, notification channel, and alerting<br /> policy                                                                                                                                                     |
+| Bigquery        | To create bigquery dataset, tables, views, and external tables                                                                                                                                                                                |
+| Cloud Build     | This module creates pull request trigger and push trigger. In addition to that, it has a submodule to create a cloud build private pool.                                                                                                      |
+| Cloud IAM       | This is cloud IAM module that provides specific permission on the following cloud resource objects -<br />-folder_iam<br />-project_iam<br />-service_account_iam<br />-storage_iam                                                           |
+| Cloud Storage   | This module create a google cloud storage bucket in a project                                                                                                                                                                                 |
+| Composer        | This module is responsible for create a composer environment v2                                                                                                                                                                               |
+| Compute Engine  | This module has two submodules - instance_template module creates a compute instance template, compute_instance module create the compute instance using the instance template                                                                |
+| Custom Role     | It creates a custom role on either organization level or project level as per the parameters specified.                                                                                                                                       |
+| Data Catalog    | This module has two submodules i.e. tag_template and taxonomy_policy_tags. tag_template module can be used to create data catalog tag template, and taxonomy_policy_tags module can be used to create policy tags.                            |
+| Dataflow        | This module is meant for only enabling dataflow api in the project. Ideally, dataflow jobs should be created by any other pipeline rather than using terraform like, cloud build.                                                             |
+| DNS             | It creates DNS private zones in a given project.                                                                                                                                                                                              |
+| Folder Factory  | The folder factory module does three things - It creates a working folder inside a root folder, secondly it creates environment folders under the working folder.                                                                             |
+| Groups          | This module creates google identity groups.                                                                                                                                                                                                   |
+| Logging         | This module is used for creating logging project with logging sinks. More details can be find in the module's own readme.                                                                                                                     |
+| NAT             | It is used to create cloud NAT resource in a given project.                                                                                                                                                                                   |
+| Org Policy      | This module can be used to create organization policy rules for an organization.                                                                                                                                                              |
+| Project Factory | This module can be used to create every part of a new google project. It creates a project, deactivates the default service account, create TF state bucket, creates a new TF service acount, and adds permission to the new service account. |
+| Pubsub          | It can be used to create pubsub topics and subscriptions.                                                                                                                                                                                     |
+| Router          | This is a google cloud router module.                                                                                                                                                                                                         |
+| Service Account | It creates service account inside a project with defined permission and roles.                                                                                                                                                                |
+| VPC Network     | This module creates a new VPC network, reserves private IP ranges (if required), and creates VPC peering (if needed)                                                                                                                          |
