@@ -14,10 +14,7 @@
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_non_prod_folder_iam_member"></a> [non\_prod\_folder\_iam\_member](#module\_non\_prod\_folder\_iam\_member) | ../cloud_iam | n/a |
-| <a name="module_prod_folder_iam_member"></a> [prod\_folder\_iam\_member](#module\_prod\_folder\_iam\_member) | ../cloud_iam | n/a |
+No modules.
 
 ## Resources
 
@@ -31,10 +28,8 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_env_folders"></a> [env\_folders](#input\_env\_folders) | List of sub folders under the parent spoke-project folder | `map(string)` | n/a | yes |
-| <a name="input_non_prod_folder_iam_bindings"></a> [non\_prod\_folder\_iam\_bindings](#input\_non\_prod\_folder\_iam\_bindings) | Map of role (key) and list of members (value) to add the IAM policies/bindings to non prod folder | `map(list(string))` | n/a | yes |
-| <a name="input_prod_folder_iam_bindings"></a> [prod\_folder\_iam\_bindings](#input\_prod\_folder\_iam\_bindings) | Map of role (key) and list of members (value) to add the IAM policies/bindings to the prod folder | `map(list(string))` | n/a | yes |
+| <a name="input_parent_folder_id"></a> [parent\_folder\_id](#input\_parent\_folder\_id) | Parent Folder Id | `string` | n/a | yes |
 | <a name="input_spoke_folder"></a> [spoke\_folder](#input\_spoke\_folder) | Name of the parent folder of the spoke project | `string` | n/a | yes |
-| <a name="input_tn_data_folder_id"></a> [tn\_data\_folder\_id](#input\_tn\_data\_folder\_id) | TN-DATA Folder Id | `string` | n/a | yes |
 
 ## Outputs
 
