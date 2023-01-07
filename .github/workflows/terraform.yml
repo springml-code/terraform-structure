@@ -72,7 +72,9 @@ jobs:
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
-      run: ./tf-test.sh fmt
+      run: |
+        chmod +x ./tf-test.sh 
+        ./tf-test.sh fmt
 
     # Generates an execution plan for Terraform
     - name: Terraform Validate
