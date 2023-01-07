@@ -8,15 +8,7 @@ if [ $# -eq 1 ]; then
     do
         if [ "$dir" != "./modules" ]; then
             if [ "$COMMAND" = "fmt" ]; then
-                for file in $(terraform fmt)
-                do 
-                    if [ "${#file}" -gt 0 ]; then 
-                        echo "******* Please format your tf files under $dir directory ********"
-                        echo $file
-                    else
-                        echo "Formatted Successfully"
-                    fi
-                done
+                terraform fmt -check
             elif [ "$COMMAND" = "validate" ]; then
                 echo "$dir"
                 terraform init
