@@ -38,7 +38,7 @@ jobs:
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       run: |
-        ls
+        pwd
         chmod +x ./tf-test.sh 
         ./tf-test.sh fmt
 
