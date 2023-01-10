@@ -1,8 +1,8 @@
 name: Notify Users
 on:
   issues:
-    types:
-      - [labeled]
+    types: [labeled]
+    
 jobs:     
   notify:
     name: Notify Users
