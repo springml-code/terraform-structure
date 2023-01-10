@@ -2,7 +2,7 @@ name: Notify Users
 on:
   issues:
     types:
-      - labeled
+      - [labeled]
 jobs:     
   notify:
     name: Notify Users
