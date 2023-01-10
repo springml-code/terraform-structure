@@ -4,6 +4,7 @@ on:
     types:
       - reopened
       - opened
+      - labeled
 jobs:
   label_issues:
     runs-on: ubuntu-latest
@@ -19,3 +20,14 @@ jobs:
               repo: context.repo.repo,
               labels: ["coe-review-required"]
             })
+            
+            
+            name: Notify users based on issue labels
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: jenschelkopf/issue-label-notification-action@1.3
+          with:
+             recipients: |
+                  coe-review-required=@capt2101akash
+                  help wanted=@capt2101akash
