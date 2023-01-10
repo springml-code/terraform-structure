@@ -1,4 +1,4 @@
-name: Label issues
+name: Label issues and notify users
 on:
   issues:
     types:
@@ -21,8 +21,6 @@ jobs:
               labels: ["coe-review-required"]
             })
             
-            
-            name: Notify users based on issue labels
   notify:
     runs-on: ubuntu-latest
     steps:
