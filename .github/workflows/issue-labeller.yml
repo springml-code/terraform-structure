@@ -7,6 +7,7 @@ on:
       - labeled
 jobs:
   label_issues:
+    name: Label Issues
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -22,6 +23,8 @@ jobs:
             })
             
   notify:
+    name: Notify Users
+    needs: label_issues
     runs-on: ubuntu-latest
     steps:
         - uses: jenschelkopf/issue-label-notification-action@1.3
