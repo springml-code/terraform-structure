@@ -1,10 +1,9 @@
-name: Label issues and notify users
+name: Label issues
 on:
   issues:
     types:
       - reopened
       - opened
-      - labeled
 jobs:
   label_issues:
     name: Label Issues
@@ -21,14 +20,3 @@ jobs:
               repo: context.repo.repo,
               labels: ["coe-review-required"]
             })
-            
-  notify:
-    name: Notify Users
-    needs: label_issues
-    runs-on: ubuntu-latest
-    steps:
-        - uses: jenschelkopf/issue-label-notification-action@1.3
-          with:
-             recipients: |
-                  coe-review-required=@capt2101akash
-                  help wanted=@capt2101akash
