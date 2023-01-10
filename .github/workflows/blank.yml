@@ -1,0 +1,15 @@
+name: Notify Users
+on:
+  issues:
+    types:
+      - labeled
+jobs:     
+  notify:
+    name: Notify Users
+    runs-on: ubuntu-latest
+    steps:
+        - uses: jenschelkopf/issue-label-notification-action@1.3
+          with:
+             recipients: |
+                  coe-review-required=@capt2101akash
+                  help wanted=@capt2101akash
