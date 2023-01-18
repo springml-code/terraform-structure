@@ -38,11 +38,12 @@ The structure of the repo and their usage are described below -
     |- prod
     |- uat
     |- modules
-|- groups
-  |- dev
-  |- prod
-  |- uat
-  |- modules
+|- organization
+  |- groups
+    |- dev
+    |- prod
+    |- uat
+    |- modules
 |- modules
   |- alerting 
   |- app_engine_firewall 
@@ -68,7 +69,7 @@ The structure of the repo and their usage are described below -
   |- vpc-network
 ```
 
-The repo is divided into 3 important folders - environments, modules, and groups.
+The repo is divided into 3 important folders - environments, modules, and organization.
 
 ### Environments 👍
 
@@ -96,9 +97,11 @@ The reason behind separating projects and resources into two different folders i
 
 In the module section, we will see what modules are currently present to use and how one can use these models.
 
-### Groups 👀️
+### Organization 👀️
 
-There is a groups folder in the root directory. This is created as a template to create google groups using terraform. As groups are not part of any project and are resources that are linked to organization. You can find the environment related terraform scripts for the groups creation in different folders under groups like dev, prod, etc.
+There is an organization folder that contains a groups folder. This is created as a template to create google groups using terraform. As groups are not part of any project and are resources that are linked to organization. You can find the environment related terraform scripts for the groups creation in different folders under groups like dev, prod, etc.
+
+This organization folder should contain all the resources that are created on an organization level.
 
 ### Modules 🔥
 
