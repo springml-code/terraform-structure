@@ -1,15 +1,15 @@
 
-resource "google_folder" "spoke_project_root_folder" {
-  display_name = var.spoke_folder
-  parent       = var.parent_folder_id
+resource "google_folder" "root_folder" {
+  for_each     = { for k, v in var.root_folders : k => v }
+  display_name = each.value
+  parent       = "organizations/${var.organization_id}"
 }
 
 
-resource "google_folder" "spoke_project_env_folders" {
-  for_each     = var.env_folders
-  display_name = each.value
-  parent       = "folders/${google_folder.spoke_project_root_folder.folder_id}"
-
+resource "google_folder" "project_folders" {
+  for_each     = { for k, v in var.project_folders : k => v }
+  display_name = each.key
+  parent       = "folders/${google_folder.root_folder["project"].folder_id}"
 }
 
 

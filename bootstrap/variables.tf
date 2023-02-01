@@ -1,5 +1,3 @@
-################# variables for creating folders #############################
-
 variable "root_folders" {
   description = "Name of the root folders for the project"
   type        = map(string)
@@ -12,10 +10,5 @@ variable "project_folders" {
 
 variable "organization_id" {
   description = "Organization ID"
-  type        = string
-}
-
-variable "parent_folder" {
-  description = "Project parent folder"
   type        = string
 }
