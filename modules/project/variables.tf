@@ -107,21 +107,6 @@ variable "enable_shared_vpc_service_project" {
 
 
 
-##################### Variables for adding permissions on default sa in service project ####################
-
-variable "tf_sa_project_iam_bindings" {
-  description = "Map of role (key) and list of members (value) to add the IAM policies/bindings"
-  type        = map(list(string))
-  default     = {}
-}
-
-################# bindings for tf-state-bucket for spoke-project ################
-
-variable "storage_bindings" {
-  description = "Map of role (key) and list of members (value) to add the IAM policies/bindings to storage buckets"
-  type        = map(list(string))
-  default     = {}
-}
 
 ################## bindings for cloudbuild sa on spoke-project sa ################
 

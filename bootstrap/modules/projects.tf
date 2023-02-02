@@ -7,6 +7,6 @@ module "bootstrap_projects" {
   billing_account   = var.billing_account
   activate_apis     = each.value.apis
 
-  folder_id            = module.initial_folders.root_folder["bootstrap"]
-  project_sa_name      = each.value.project_sa_name
+  folder_id       = module.initial_folders.root_folder["bootstrap"]
+  project_sa_name = each.value.project_sa_name
 }

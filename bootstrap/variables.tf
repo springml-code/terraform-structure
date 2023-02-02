@@ -15,8 +15,8 @@ variable "organization_id" {
 
 variable "bootstrap_projects" {
   description = "Projects under bootstrap folder"
-  type        = map(object({
-    apis = list(string)
+  type = map(object({
+    apis            = list(string)
     project_sa_name = string
   }))
 }

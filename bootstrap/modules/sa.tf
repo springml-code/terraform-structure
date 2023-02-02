@@ -43,7 +43,7 @@ locals {
     ], local.common_roles)),
     "proj" = distinct(concat([
       "roles/accesscontextmanager.policyAdmin",
-    #   "roles/resourcemanager.organizationAdmin",
+      #   "roles/resourcemanager.organizationAdmin",
       "roles/serviceusage.serviceUsageConsumer",
     ], local.common_roles)),
   }
@@ -113,14 +113,14 @@ locals {
     ],
   }
 
-#   bootstrap_projects = {
-#     "seed" = module.seed_bootstrap.seed_project_id,
-#     "cicd" = local.cicd_project_id,
-#   }
+  #   bootstrap_projects = {
+  #     "seed" = module.seed_bootstrap.seed_project_id,
+  #     "cicd" = local.cicd_project_id,
+  #   }
 }
 
 resource "google_service_account" "terraform_sa" {
-  for_each     = local.granular_sa
+  for_each = local.granular_sa
 
   project      = module.bootstrap_projects["terraform-project-common"].project_id
   account_id   = "sa-terraform-${each.key}"
