@@ -15,7 +15,7 @@ variable "organization_id" {
   type        = string
 }
 
-variable "parent_folder" {
-  description = "Project parent folder"
-  type        = string
+variable "bootstrap_folder_iam_bindings" {
+  description = "Map of role (key) and list of members (value) to add the IAM policies/bindings"
+  type        = map(list(string))
 }

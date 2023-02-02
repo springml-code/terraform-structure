@@ -1,15 +1,21 @@
+<!-- trunk-ignore(markdownlint/MD036) -->
+
+<!-- trunk-ignore(markdownlint/MD041) -->
+
 # Google Cloud Organization Policy Terraform Module
 
 This Terraform module makes it easier to manage [organization policies](https://cloud.google.com/resource-manager/docs/organization-policy/overview) for your Google Cloud environment, particularly when you want to have exclusion rules. This module will allow you to set a top-level org policy and then disable it on individual projects or folders easily.
 
 ## Compatibility
+
 This module is meant for use with Terraform 0.13+ and tested using Terraform 1.0+. If you find incompatibilities using Terraform >=0.13, please open an issue.
- If you haven't
+If you haven't
 [upgraded](https://www.terraform.io/upgrade-guides/0-13.html) and need a Terraform
 0.12.x-compatible version of this module, the last released version
 intended for Terraform 0.12.x is [v4.0.0](https://registry.terraform.io/modules/terraform-google-modules/-org-policy/google/v4.0.0).
 
 ## Usage
+
 Many examples are included in the [examples](./examples/) folder, but simple usage is as follows:
 
 ```hcl
@@ -27,6 +33,7 @@ module "org-policy" {
 ```
 
 ### Variables
+
 To control module's behavior, change variables' values regarding the following:
 
 - `constraint`: set this variable with the [constraint value](https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints#available_constraints) in the form `constraints/{constraint identifier}`. For example, `constraints/serviceuser.services`
@@ -48,23 +55,25 @@ To control module's behavior, change variables' values regarding the following:
   - `deny_list_length`
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
 ## Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| allow | (Only for list constraints) List of values which should be allowed | `list(string)` | <pre>[<br>  ""<br>]</pre> | no |
-| allow\_list\_length | The number of elements in the allow list | `number` | `0` | no |
-| constraint | The constraint to be applied | `string` | n/a | yes |
-| deny | (Only for list constraints) List of values which should be denied | `list(string)` | <pre>[<br>  ""<br>]</pre> | no |
-| deny\_list\_length | The number of elements in the deny list | `number` | `0` | no |
-| enforce | If boolean constraint, whether the policy is enforced at the root; if list constraint, whether to deny all (true) or allow all | `bool` | `null` | no |
-| exclude\_folders | Set of folders to exclude from the policy | `set(string)` | `[]` | no |
-| exclude\_projects | Set of projects to exclude from the policy | `set(string)` | `[]` | no |
-| folder\_id | The folder id for putting the policy | `string` | `null` | no |
-| organization\_id | The organization id for putting the policy | `string` | `null` | no |
-| policy\_for | Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`. | `string` | n/a | yes |
-| policy\_type | The constraint type to work with (either 'boolean' or 'list') | `string` | `"list"` | no |
-| project\_id | The project id for putting the policy | `string` | `null` | no |
+
+| Name                | Description                                                                                                                    | Type           | Default                   | Required |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------- | --------------------------- | :--------: |
+| allow               | (Only for list constraints) List of values which should be allowed                                                             | `list(string)` | <pre>[<br>  ""<br>]</pre> |    no    |
+| allow\_list\_length | The number of elements in the allow list                                                                                       | `number`       | `0`                       |    no    |
+| constraint          | The constraint to be applied                                                                                                   | `string`       | n/a                       |   yes   |
+| deny                | (Only for list constraints) List of values which should be denied                                                              | `list(string)` | <pre>[<br>  ""<br>]</pre> |    no    |
+| deny\_list\_length  | The number of elements in the deny list                                                                                        | `number`       | `0`                       |    no    |
+| enforce             | If boolean constraint, whether the policy is enforced at the root; if list constraint, whether to deny all (true) or allow all | `bool`         | `null`                    |    no    |
+| exclude\_folders    | Set of folders to exclude from the policy                                                                                      | `set(string)`  | `[]`                      |    no    |
+| exclude\_projects   | Set of projects to exclude from the policy                                                                                     | `set(string)`  | `[]`                      |    no    |
+| folder\_id          | The folder id for putting the policy                                                                                           | `string`       | `null`                    |    no    |
+| organization\_id    | The organization id for putting the policy                                                                                     | `string`       | `null`                    |    no    |
+| policy\_for         | Resource hierarchy node to apply the policy to: can be one of`organization`, `folder`, or `project`.                           | `string`       | n/a                       |   yes   |
+| policy\_type        | The constraint type to work with (either 'boolean' or 'list')                                                                  | `string`       | `"list"`                  |    no    |
+| project\_id         | The project id for putting the policy                                                                                          | `string`       | `null`                    |    no    |
 
 ## Outputs
 
@@ -73,26 +82,33 @@ No output.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Requirements
+
 ### Terraform plugins
+
 - [Terraform](https://www.terraform.io/downloads.html) >= 0.13.0
 - [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) >= v2.5.0
 
 ### Permissions
+
 In order to execute this module, the Service Account you run as must have the **Organization Policy Administrator** (`roles/orgpolicy.PolicyAdmin`) role.
 
 ## Install
+
 ### Terraform
+
 Be sure you have the correct Terraform version (0.12.x), you can choose the binary here:
+
 - https://releases.hashicorp.com/terraform/
 
 ### Terraform plugins
 
 - [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) >= v2.5.0
 
-
 ### Fast install (optional)
+
 For a fast install, please configure the variables on init_centos.sh  or init_debian.sh script and then launch it.
 
 The script will do:
+
 - Environment variables setting
 - Installation of base packages like wget, curl, unzip, gcloud, etc.

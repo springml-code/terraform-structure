@@ -26,7 +26,7 @@ variable "activate_apis" {
 variable "tf_state_bucket_name" {
   description = "Bucket name for the exisiting tf state bucket for the env"
   type        = string
-  default     = null
+  default     = ""
 }
 
 

@@ -30,7 +30,7 @@ module "state_bucket" {
   count  = var.is_state_bucket_created ? 1 : 0
   source = "../cloud_storage"
 
-  project_id      = var.project_name
+  project_id      = module.project_factory.project_id
   names           = [local.project_state_bucket_name]
   location        = local.location
   versioning      = local.versioning
@@ -39,21 +39,22 @@ module "state_bucket" {
 
 ########## assigning roles for default SA created on the project
 
-module "tf_sa_project_iam" {
-  count                = local.sa_created ? 1 : 0
-  source               = "../cloud_iam/project_iam"
-  project_names        = [module.project_factory.project_id]
-  project_iam_bindings = var.tf_sa_project_iam_bindings
-}
+# module "tf_sa_project_iam" {
+#   count                = local.sa_created ? 1 : 0
+#   source               = "../cloud_iam/project_iam"
+#   project_names        = [module.project_factory.project_id]
+#   project_iam_bindings = {
+#     var.tf_sa_project_iam_bindings
+# }
 
-####### assigning roles for default SA created on the tf state bucket
+# ####### assigning roles for default SA created on the tf state bucket
 
-module "tf_state_bucket_iam_bindings" {
-  count           = local.is_tf_state_bucket ? 1 : 0
-  source          = "../cloud_iam/storage_iam"
-  storage_buckets = [var.tf_state_bucket_name]
-  bindings        = var.storage_bindings
-  depends_on = [
-    module.project_factory
-  ]
-}
+# module "tf_state_bucket_iam_bindings" {
+#   count           = local.is_tf_state_bucket ? 1 : 0
+#   source          = "../cloud_iam/storage_iam"
+#   storage_buckets = [local.project_state_bucket_name]
+#   bindings        = var.storage_bindings
+#   depends_on = [
+#     module.project_factory
+#   ]
+# }
