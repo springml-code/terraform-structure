@@ -19,14 +19,14 @@ bootstrap_folder_iam_bindings = {
 }
 
 bootstrap_projects = {
-  "terraform-project" = {
+  "terraform-project-common" = {
     apis = [
       "storage.googleapis.com",
       "iam.googleapis.com",
     ]
-    project_sa_name = "tf-project-sa"
+    project_sa_name = "tf-folder-admin-sa"
   }
-  "common-cloud-build" = {
+  "cloud-build-common" = {
     apis = [
       "cloudbuild.googleapis.com",
       "storage.googleapis.com",

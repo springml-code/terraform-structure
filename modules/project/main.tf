@@ -39,9 +39,9 @@ module "state_bucket" {
 
 ########## assigning roles for default SA created on the project
 
-# module "tf_sa_project_iam" {
+# module "tf_sa_iam" {
 #   count                = local.sa_created ? 1 : 0
-#   source               = "../cloud_iam/project_iam"
+#   source               = "../cloud_iam/service_account_iam"
 #   project_names        = [module.project_factory.project_id]
 #   project_iam_bindings = {
 #     var.tf_sa_project_iam_bindings
