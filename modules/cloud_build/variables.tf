@@ -32,7 +32,7 @@ variable "substitutions" {
   default     = null
 }
 
-variable "service_account" {
+variable "service_account_email" {
   description = "The service account used for all user-controlled operations"
   type        = string
   default     = null

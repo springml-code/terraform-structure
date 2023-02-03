@@ -23,5 +23,5 @@ output "bucket_urls" {
 
 output "foundation_service_account_email" {
   description = "Foundations service account email"
-  value       = { for name, details in google_service_account.terraform_sa : name => details["email"] }
+  value       = { for name, details in google_service_account.terraform_foundation_sa : name => details["email"] }
 }

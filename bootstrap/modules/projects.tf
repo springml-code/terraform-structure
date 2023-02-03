@@ -10,3 +10,16 @@ module "bootstrap_projects" {
   folder_id       = module.initial_folders.root_folder["bootstrap"]
   project_sa_name = each.value.project_sa_name
 }
+
+module "common_projects" {
+  for_each          = { for k, v in var.common_projects : k => v }
+  source            = "../../modules/project"
+  project_name      = each.key
+  random_project_id = true
+  org_id            = var.organization_id
+  billing_account   = var.billing_account
+  activate_apis     = each.value.apis
+
+  folder_id       = module.initial_folders.root_folder["shared"]
+  project_sa_name = each.value.project_sa_name
+}

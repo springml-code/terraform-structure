@@ -1,3 +1,6 @@
+locals {
+  service_account = var.service_account_email == null ? "" : "projects/${var.project_id}/serviceAccounts/${var.service_account_email}"
+}
 resource "google_cloudbuild_trigger" "pull_request_trigger" {
   count       = var.create_pull_trigger ? 1 : 0
   project     = var.project_id
@@ -7,7 +10,7 @@ resource "google_cloudbuild_trigger" "pull_request_trigger" {
   disabled    = var.disabled
 
   substitutions      = var.substitutions
-  service_account    = var.service_account
+  service_account    = local.service_account
   include_build_logs = var.include_build_logs
 
   filename       = var.filename
@@ -27,6 +30,7 @@ resource "google_cloudbuild_trigger" "pull_request_trigger" {
 }
 
 resource "google_cloudbuild_trigger" "push_trigger" {
+  provider    = google-beta
   count       = var.create_pull_trigger ? 0 : 1
   project     = var.project_id
   name        = var.trigger_name
@@ -35,7 +39,7 @@ resource "google_cloudbuild_trigger" "push_trigger" {
   disabled    = var.disabled
 
   substitutions      = var.substitutions
-  service_account    = var.service_account
+  service_account    = local.service_account
   include_build_logs = var.include_build_logs
 
   filename       = var.filename

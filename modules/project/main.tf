@@ -2,7 +2,7 @@
 
 module "project_factory" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 10.1"
+  version = "~> 14.1"
 
   name              = var.project_name
   random_project_id = var.random_project_id

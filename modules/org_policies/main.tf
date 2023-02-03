@@ -1,6 +1,6 @@
 module "org_policy" {
   source  = "terraform-google-modules/org-policy/google"
-  version = "~> 3.0.2"
+  version = "~> 5.2.2"
 
   allow             = var.allow
   allow_list_length = var.allow_list_length

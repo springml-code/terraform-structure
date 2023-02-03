@@ -6,6 +6,8 @@ module "bootstrap_setup" {
   organization_id = var.organization_id
   # parent_folder      = local.parent_folder
   bootstrap_projects            = var.bootstrap_projects
+  common_projects               = var.common_projects
   billing_account               = var.billing_account
-  bootstrap_folder_iam_bindings = var.bootstrap_folder_iam_bindings
+  cb_resources_trigger = var.cb_resources_trigger
+  foundation_sa_iam_bindings = var.foundation_sa_iam_bindings
 }
