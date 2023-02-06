@@ -8,17 +8,32 @@ output "project_folders" {
   value       = module.initial_folders.project_folders
 }
 
-output "project_id" {
+output "tf_project_id" {
   description = "Project IDs"
-  value       = { for name, details in module.bootstrap_projects : name => details["project_id"] }
+  value       = module.bootstrap_projects["terraform-project-common"].project_id
 }
-output "bucket_names" {
-  description = "name of the project state bucket"
-  value       = { for name, details in module.bootstrap_projects : name => details["bucket_name"] }
+
+output "cloudbuild_project_id" {
+  description = "Project IDs"
+  value       = module.common_projects["cloud-build-common"].project_id
 }
-output "bucket_urls" {
-  description = "Self link of the project bucket"
-  value       = { for name, details in module.bootstrap_projects : name => details["bucket_url"] }
+
+output "tf_bucket_name" {
+  description = "name of the TF project state bucket"
+  value       = module.bootstrap_projects["terraform-project-common"].bucket_name
+}
+output "tf_bucket_url" {
+  description = "Self link of the TF project bucket"
+  value       = module.bootstrap_projects["terraform-project-common"].bucket_url
+}
+
+output "cloudbuild_bucket_name" {
+  description = "name of the cloud build project state bucket"
+  value       = module.common_projects["cloud-build-common"].bucket_name
+}
+output "cloudbuild_bucket_url" {
+  description = "Self link of the cloud build project bucket"
+  value       = module.common_projects["cloud-build-common"].bucket_url
 }
 
 output "foundation_service_account_email" {
