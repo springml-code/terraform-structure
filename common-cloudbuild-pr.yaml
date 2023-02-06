@@ -45,3 +45,6 @@ steps:
   - | 
       ./common-bash-scripts/tf-pr.sh "${_BASE_BRANCH}" "${BRANCH_NAME}" "${_MODULE}" plan
 
+options:
+  logging: CLOUD_LOGGING_ONLY 
+
