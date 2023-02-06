@@ -52,3 +52,6 @@ steps:
   - '-c'
   - | 
       ./common-bash-scripts/tf-push.sh "${BRANCH_NAME}" "${_MODULE}" apply
+
+options:
+  logging: CLOUD_LOGGING_ONLY 
