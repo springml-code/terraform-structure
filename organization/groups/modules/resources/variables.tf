@@ -1,6 +1,6 @@
 variable "customer_id" {
   description = "Customer id of the organization to create the group in. One of domain or customer_id must be specified"
-  type    = string
+  type        = string
 }
 
 variable "env" {

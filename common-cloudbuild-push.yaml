@@ -1,0 +1,54 @@
+steps:
+
+- id: 'Lint Shell'
+  name: 'koalaman/shellcheck-alpine'
+  entrypoint: '/bin/sh'
+  args:
+  - -c
+  - | 
+    find ./common-bash-scripts -name "*.sh" \
+      -exec shellcheck -f gcc {} \; \
+      | tee /proc/1/fd/1 \
+      | grep -q "error\|note"
+    if [[ $? -eq 0 ]] ; then exit 1 ; fi
+    chmod +x common-bash-scripts/*
+
+- id: 'tf init'
+  name: 'hashicorp/terraform:1.3.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - |
+      ./common-bash-scripts/tf-push.sh "${BRANCH_NAME}" "${_MODULE}" init
+
+- id: 'tf fmt'
+  name: 'hashicorp/terraform:1.3.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - |
+      ./common-bash-scripts/tf-push.sh "${BRANCH_NAME}" "${_MODULE}" fmt
+
+- id: 'tf validate'
+  name: 'hashicorp/terraform:1.3.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - |
+      ./common-bash-scripts/tf-push.sh "${BRANCH_NAME}" "${_MODULE}" validate
+
+- id: 'tf plan'
+  name: 'hashicorp/terraform:1.3.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+      ./common-bash-scripts/tf-push.sh "${BRANCH_NAME}" "${_MODULE}" plan
+
+- id: 'tf apply'
+  name: 'hashicorp/terraform:1.3.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+      ./common-bash-scripts/tf-push.sh "${BRANCH_NAME}" "${_MODULE}" apply
