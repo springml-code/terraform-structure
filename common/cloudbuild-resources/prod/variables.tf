@@ -15,5 +15,6 @@ variable "cb_triggers" {
     trigger_name     = string
     trigger_description = string
     substitutions       = map(string)
+    service_account_email = string
   }))
 }
