@@ -58,7 +58,7 @@ cb_resources_trigger = {
       "common/cloudbuild-resources/**"
     ]
     substitutions = {
-      _MODULE = "common/cloudbuild-resources"
+      _MODULE = "common/cloudbuild-resources/"
     }
     trigger_description = "Pipeline to plan new triggers in shared cloud build project"
     trigger_name = "trigger-creator-pipeline-pr"
@@ -73,7 +73,7 @@ cb_resources_trigger = {
       "common/cloudbuild-resources/**"
     ]
     substitutions = {
-      _MODULE = "common/cloudbuild-resources"
+      _MODULE = "common/cloudbuild-resources/"
     }
     trigger_description = "Pipeline to apply new triggers in shared cloud build project"
     trigger_name = "trigger-creator-pipeline-push"
