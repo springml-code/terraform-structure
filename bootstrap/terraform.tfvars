@@ -55,10 +55,10 @@ cb_resources_trigger = {
     github_owner = "springml-code"
     github_repo_name = "terraform-structure"
     included_files = [
-      "environments/resources/cloudbuild/**"
+      "common/cloudbuild-resources/**"
     ]
     substitutions = {
-      _MODULE = "environments/resources/cloudbuild"
+      _MODULE = "common/cloudbuild-resources"
     }
     trigger_description = "Pipeline to plan new triggers in shared cloud build project"
     trigger_name = "trigger-creator-pipeline-pr"
@@ -70,10 +70,10 @@ cb_resources_trigger = {
     github_owner = "springml-code"
     github_repo_name = "terraform-structure"
     included_files = [
-      "environments/resources/cloudbuild/**"
+      "common/cloudbuild-resources/**"
     ]
     substitutions = {
-      _MODULE = "environments/resources/cloudbuild"
+      _MODULE = "common/cloudbuild-resources"
     }
     trigger_description = "Pipeline to apply new triggers in shared cloud build project"
     trigger_name = "trigger-creator-pipeline-push"
