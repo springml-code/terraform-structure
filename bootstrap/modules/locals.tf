@@ -1,8 +1,27 @@
 locals {
-  org_policies = [
-    "constraints/compute.skipDefaultNetworkCreation",
-    "constraints/iam.automaticIamGrantsForDefaultServiceAccounts"
-  ]
+  org_policies = {
+    skipDefaultNetwork = {
+      constraint = "constraints/compute.skipDefaultNetworkCreation"
+      value      = true
+      policy_for = "folder"
+      folder_id  = module.initial_folders.root_folder["project"]
+      project_id = null
+    }
+    defaultServiceAccountsGrant = {
+      constraint = "constraints/iam.automaticIamGrantsForDefaultServiceAccounts"
+      value      = true
+      policy_for = "folder"
+      folder_id  = module.initial_folders.root_folder["project"]
+      project_id = null
+    }
+    disableCrossProjectSA = {
+      constraint = "constraints/iam.disableCrossProjectServiceAccountUsage"
+      value      = false
+      policy_for = "project"
+      project_id = module.bootstrap_projects["terraform-project-common"].project_id
+      folder_id  = null
+    }
+  }
   initial_projects = {
     tf-common-project = module.bootstrap_projects["terraform-project-common"].project_id,
     common-cloud-build = module.common_projects["cloud-build-common"].project_id

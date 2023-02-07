@@ -1,6 +1,6 @@
 locals {
-  service_account_project_id = var.service_account_project_id == null ? var.project_id : var.service_account_project_id
-  service_account = var.service_account_email == null ? "" : "projects/${var.service_account_project_id}/serviceAccounts/${var.service_account_email}"
+  service_account_project_id = var.service_account_project_id == "" ? var.project_id : var.service_account_project_id
+  service_account = var.service_account_email == null ? "" : "projects/${local.service_account_project_id}/serviceAccounts/${var.service_account_email}"
 }
 resource "google_cloudbuild_trigger" "pull_request_trigger" {
   count       = var.create_pull_trigger ? 1 : 0
