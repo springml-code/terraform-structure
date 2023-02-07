@@ -16,6 +16,5 @@ variable "cb_triggers" {
     trigger_description = string
     substitutions       = map(string)
     service_account_email = string
-    service_account_project_id = string
   }))
 }
