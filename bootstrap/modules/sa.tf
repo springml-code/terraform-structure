@@ -21,7 +21,7 @@ module "add_impersonation_on_foundation_cicd_sa" {
     project_id = each.value.project
     bindings = {
         "roles/iam.serviceAccountTokenCreator" = [
-            "serviceAccount:service-${module.common_projects["cloud-build-common"].project_number}@gcp-sa-cloudbuild.iam.gserviceaccount.com",
+            "serviceAccount:${module.common_projects["cloud-build-common"].project_number}@cloudbuild.gserviceaccount.com",
             "serviceAccount:${google_service_account.terraform_foundation_sa["ci-cd"].email}"
         ]
     }
