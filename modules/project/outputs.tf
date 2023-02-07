@@ -3,6 +3,11 @@ output "project_id" {
   value       = module.project_factory.project_id
 }
 
+output "project_number" {
+  description = "Project number"
+  value       = module.project_factory.project_number
+}
+
 output "bucket_name" {
   description = "name of the project state bucket"
   value       = local.project_state_bucket_name

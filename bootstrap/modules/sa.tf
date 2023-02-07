@@ -14,6 +14,18 @@ module "add_impersonation_on_foundation_sa" {
     bindings = var.foundation_sa_iam_bindings
 }
 
+module "add_impersonation_on_foundation_cicd_sa" {
+    source = "../../modules/cloud_iam/service_account_iam"
+    for_each = local.granular_sa
+    service_accounts = [google_service_account.terraform_foundation_sa["ci-cd"].email]
+    project_id = module.common_projects["cloud-build-common"].project_id
+    bindings = {
+        "roles/iam.serviceAccountTokenCreator" = [
+            "serviceAccount:${google_service_account.terraform_foundation_sa[each.key].email}"
+        ]
+    }
+}
+
 module "org_iam_member" {
   source   = "../../modules/parent_iam"
   for_each = local.granular_sa_org_level_roles
