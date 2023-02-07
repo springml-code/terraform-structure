@@ -11,4 +11,5 @@ module "cb_triggers" {
   trigger_name = each.value.trigger_name
   description  = each.value.trigger_description
   substitutions = each.value.substitutions
+  service_account_email = each.value.service_account_email
 }
