@@ -1,8 +1,3 @@
-variable "policy_for" {
-  description = "Resource hierarchy node to apply the policy to: can be one of `organization`, `folder`, or `project`."
-  type        = string
-}
-
 # Folder creation
 variable "root_folders" {
   description = "Name of the root folders for the project"

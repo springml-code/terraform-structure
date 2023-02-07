@@ -1,6 +1,5 @@
 module "bootstrap_setup" {
   source          = "./modules"
-  policy_for      = "folder"
   root_folders    = var.root_folders
   project_folders = var.project_folders
   organization_id = var.organization_id

@@ -6,7 +6,7 @@ variable "project_id" {
 variable "service_account_project_id" {
   description = "Service Account Project ID"
   type        = string
-  default     = null
+  default     = ""
 }
 
 variable "trigger_name" {
