@@ -1,5 +1,5 @@
 module "cb_triggers" {
-  source              = "../../modules/cloud_build"
+  source              = "../../../modules/cloud_build"
   for_each            = { for k, v in var.cb_triggers : k => v }
   create_pull_trigger = each.value.trigger_type == "pull" ? true : false
   project_id          = var.project_id
