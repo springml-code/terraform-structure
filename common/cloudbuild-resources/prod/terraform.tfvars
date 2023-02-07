@@ -15,6 +15,7 @@ cb_triggers = {
         trigger_name = "network-project-creator-pipeline-pr"
         trigger_type = "pull"
         service_account_email = "sa-terraform-net@terraform-project-common-4108.iam.gserviceaccount.com"
+        service_account_project_id = "terraform-project-common-4108"
     }
     "network_project_creator_push_trigger" = {
         branch_name = "^main$"
@@ -31,5 +32,6 @@ cb_triggers = {
         trigger_name = "network-project-creator-pipeline-push"
         trigger_type = "push"
         service_account_email = "sa-terraform-net@terraform-project-common-4108.iam.gserviceaccount.com"
+        service_account_project_id = "terraform-project-common-4108"
     }
 }

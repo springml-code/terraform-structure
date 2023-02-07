@@ -17,11 +17,11 @@ module "add_impersonation_on_foundation_sa" {
 module "add_impersonation_on_foundation_cicd_sa" {
     source = "../../modules/cloud_iam/service_account_iam"
     for_each = local.granular_sa
-    service_accounts = [google_service_account.terraform_foundation_sa["ci-cd"].email]
-    project_id = module.common_projects["cloud-build-common"].project_id
+    service_accounts = [google_service_account.terraform_foundation_sa[each.key].email]
+    project_id = each.value.project
     bindings = {
         "roles/iam.serviceAccountTokenCreator" = [
-            "serviceAccount:${google_service_account.terraform_foundation_sa[each.key].email}"
+            "serviceAccount:${google_service_account.terraform_foundation_sa["ci-cd"].email}"
         ]
     }
 }
