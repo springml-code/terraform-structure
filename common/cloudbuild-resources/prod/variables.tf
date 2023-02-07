@@ -15,10 +15,6 @@ variable "cb_triggers" {
     trigger_name     = string
     trigger_description = string
     substitutions       = map(string)
+    service_account_email = string
   }))
-}
-
-variable "ci_cd_service_account_email" {
-    description  = "CI CD service account"
-    type = string
 }

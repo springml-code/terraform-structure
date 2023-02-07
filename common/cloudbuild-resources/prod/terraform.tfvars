@@ -1,6 +1,4 @@
 project_id = "cloud-build-common-1884"
-ci_cd_service_account_email = "sa-terraform-ci-cd@cloud-build-common-1884.iam.gserviceaccount.com"
-
 cb_triggers = {
     "network_project_creator_pull_trigger" = {
         branch_name = "^dev$"
@@ -16,6 +14,7 @@ cb_triggers = {
         trigger_description = "Pipeline to plan network project creation"
         trigger_name = "network-project-creator-pipeline-pr"
         trigger_type = "pull"
+        service_account_email = "sa-terraform-net@terraform-project-common-4108.iam.gserviceaccount.com"
     }
     "network_project_creator_push_trigger" = {
         branch_name = "^main$"
@@ -31,5 +30,6 @@ cb_triggers = {
         trigger_description = "Pipeline to apply network project creation"
         trigger_name = "network-project-creator-pipeline-push"
         trigger_type = "push"
+        service_account_email = "sa-terraform-net@terraform-project-common-4108.iam.gserviceaccount.com"
     }
 }

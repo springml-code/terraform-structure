@@ -8,7 +8,7 @@ module "cb_triggers" {
   github_repo_name    = each.value.github_repo_name
   branch_name         = each.value.branch_name
   included_files      = each.value.included_files
-  service_account_email     = var.ci_cd_service_account_email
+  service_account_email     = each.value.service_account_email
   trigger_name = each.value.trigger_name
   description  = each.value.trigger_description
   substitutions = each.value.substitutions
