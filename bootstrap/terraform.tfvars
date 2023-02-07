@@ -50,7 +50,7 @@ common_projects = {
 
 cb_resources_trigger = {
   "cb_trigger_creator_pull_trigger" = {
-    branch_name = "^dev$"
+    branch_name = "^main$"
     cloudbuild_yaml = "./common-cloudbuild-pr.yaml"
     github_owner = "springml-code"
     github_repo_name = "terraform-structure"
