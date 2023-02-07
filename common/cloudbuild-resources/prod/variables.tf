@@ -18,8 +18,3 @@ variable "cb_triggers" {
     service_account_email = string
   }))
 }
-
-variable "ci_cd_service_account_email" {
-    description  = "CI CD service account"
-    type = string
-}
