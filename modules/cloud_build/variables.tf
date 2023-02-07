@@ -3,6 +3,12 @@ variable "project_id" {
   type        = string
 }
 
+variable "service_account_project_id" {
+  description = "Service Account Project ID"
+  type        = string
+  default     = null
+}
+
 variable "trigger_name" {
   description = "Name of the trigger"
   type        = string
