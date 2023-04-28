@@ -7,28 +7,28 @@ resource "google_service_account" "terraform_foundation_sa" {
 }
 
 module "add_impersonation_on_foundation_sa" {
-    source = "../../modules/cloud_iam/service_account_iam"
-    for_each = local.granular_sa
-    service_accounts = [google_service_account.terraform_foundation_sa[each.key].email]
-    project_id = each.value.project
-    bindings = var.foundation_sa_iam_bindings
+  source           = "../../modules/cloud_iam/service_account_iam"
+  for_each         = local.granular_sa
+  service_accounts = [google_service_account.terraform_foundation_sa[each.key].email]
+  project_id       = each.value.project
+  bindings         = var.foundation_sa_iam_bindings
 }
 
 module "add_impersonation_on_foundation_cicd_sa" {
-    source = "../../modules/cloud_iam/service_account_iam"
-    for_each = local.granular_sa
-    service_accounts = [google_service_account.terraform_foundation_sa[each.key].email]
-    project_id = each.value.project
-    bindings = {
-        "roles/iam.serviceAccountTokenCreator" = [
-            "serviceAccount:service-${module.common_projects["cloud-build-common"].project_number}@gcp-sa-cloudbuild.iam.gserviceaccount.com",
-            "serviceAccount:${google_service_account.terraform_foundation_sa["ci-cd"].email}"
-        ]
-        "roles/iam.serviceAccountUser" = [
-            "serviceAccount:service-${module.common_projects["cloud-build-common"].project_number}@gcp-sa-cloudbuild.iam.gserviceaccount.com",
-            "serviceAccount:${google_service_account.terraform_foundation_sa["ci-cd"].email}"
-        ]
-    }
+  source           = "../../modules/cloud_iam/service_account_iam"
+  for_each         = local.granular_sa
+  service_accounts = [google_service_account.terraform_foundation_sa[each.key].email]
+  project_id       = each.value.project
+  bindings = {
+    "roles/iam.serviceAccountTokenCreator" = [
+      "serviceAccount:service-${module.common_projects["cloud-build-common"].project_number}@gcp-sa-cloudbuild.iam.gserviceaccount.com",
+      "serviceAccount:${google_service_account.terraform_foundation_sa["ci-cd"].email}"
+    ]
+    "roles/iam.serviceAccountUser" = [
+      "serviceAccount:service-${module.common_projects["cloud-build-common"].project_number}@gcp-sa-cloudbuild.iam.gserviceaccount.com",
+      "serviceAccount:${google_service_account.terraform_foundation_sa["ci-cd"].email}"
+    ]
+  }
 }
 
 module "org_iam_member" {
