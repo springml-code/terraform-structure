@@ -1,5 +1,5 @@
 provider "google" {
-  project                     = var.project_id
-  request_timeout             = "60s"
-  region                      = "us-central1"
+  project         = var.project_id
+  request_timeout = "60s"
+  region          = "us-central1"
 }

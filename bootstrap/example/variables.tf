@@ -1,4 +1,3 @@
-# Folder creation
 variable "root_folders" {
   description = "Name of the root folders for the project"
   type        = map(string)
@@ -14,12 +13,6 @@ variable "organization_id" {
   type        = string
 }
 
-# variable "parent_folder" {
-#   description = "Project parent folder"
-#   type        = string
-# }
-
-# Bootstrap Project Creation
 variable "bootstrap_projects" {
   description = "Projects under bootstrap folder"
   type = map(object({
@@ -43,14 +36,14 @@ variable "billing_account" {
 
 variable "cb_resources_trigger" {
   description = "Trigger for shared projects"
-  type        = map(object({
-    trigger_type = string
-    cloudbuild_yaml = string
-    github_owner    = string
-    github_repo_name = string
-    branch_name      = string
-    included_files   = list(string)
-    trigger_name     = string
+  type = map(object({
+    trigger_type        = string
+    cloudbuild_yaml     = string
+    github_owner        = string
+    github_repo_name    = string
+    branch_name         = string
+    included_files      = list(string)
+    trigger_name        = string
     trigger_description = string
     substitutions       = map(string)
   }))

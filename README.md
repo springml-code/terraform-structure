@@ -3,9 +3,10 @@
 1. [Terraform Structure Template](#terraform-structure-template-)
 2. [Repo Description](#repo-description)
 3. [Get Started](#get-started-)
-   1. [Environments](#Environments-)
-   2. [Groups](#Groups-)
-   3. [Modules](#Modules-)
+   1. [Bootstrap](#Bootstrap-)
+   2. [Environments](#Environments-)
+   3. [Groups](#Groups-)
+   4. [Modules](#Modules-)
 
 # Terraform Structure Template 📝
 
@@ -27,6 +28,8 @@ The following sections will describe the usage of this repository. As explained 
 The structure of the repo and their usage are described below -
 
 ```
+|- bootstrap
+  |- modules
 |- environments
   |- project
     |- dev
@@ -69,7 +72,56 @@ The structure of the repo and their usage are described below -
   |- vpc-network
 ```
 
-The repo is divided into 3 important folders - environments, modules, and organization.
+The repo is divided into 4 important folders - bootstrap, environments, modules, and organization.
+
+### Bootstrap 💻
+
+The purpose of this step is to bootstrap a Google Cloud organization, creating all the required resources and permissions to start using the Cloud Foundation Toolkit (CFT). This step also configures a CI/CD Pipeline for foundations code in subsequent stages.
+
+**Note:** Make sure that you use version 1.3.0 of Terraform throughout this series. Otherwise, you might experience Terraform state snapshot lock errors. 
+
+Also make sure that you've done the following:
+
+1. Set up a Google Cloud [organization](https://cloud.google.com/resource-manager/docs/creating-managing-organization).
+2. Set up a Google Cloud [billing account](https://cloud.google.com/billing/docs/how-to/manage-billing-account).
+3. Create Cloud Identity or Google Workspace groups for organization and billing admins.
+4. For the user who will run the procedures in this document, grant the following roles:
+   * The `roles/resourcemanager.organizationAdmin` role on the Google Cloud organization.
+   * The `roles/orgpolicy.policyAdmin` role on the Google Cloud organization.
+   * The `roles/billing.admin` role on the billing account.
+   * The `roles/resourcemanager.folderCreator` role.
+
+The bootstrap example specified in the examples directory does the following:-
+
+* Sets up organization policies
+
+  * Skip default network creation.
+  * Enable cross project SA.
+  * Disable Automatic IAM Grants for Default Service AccountsDefaul.
+* Creates root folders bootstrap, springml-sample, and shared.
+* Creates project environment folders (dev, non-prod, and prod) under springml-sample.
+* Creates a *terraform-project-common* project under bootstrap folder using project factory module.
+
+  * Enables required APIs
+* Create *cloud-build-common* project under common folder using project factory module.
+
+  * Enables required APIs
+* Creates cloud build triggers for creation of new cloud build triggers that will be used for developing new projects and resources.
+* Creates service accounts -
+
+  * Bootstrap SA
+  * Organization SA
+  * Environment SA
+  * Network SA
+  * Project SA
+  * CI-CD SA
+
+  Details of the permissions are explained [here](https://github.com/springml-code/terraform-structure/blob/main/bootstrap/modules/locals.tf).
+* Assigns service account impersonation role on the Service accounts created.
+
+Once the bootstrap is set one can move to the next steps and utilize cloud build to create the environment resources.
+
+For more details on bootstrap one can refer to [this](https://docs.google.com/document/d/16YSUpvlPrl2yA51EQHpHFNx-76WHt_TK5Bj64QbvBDE/edit?usp=sharing&resourcekey=0-mn3z2h0AZIDTL67rcC-LVw) projects documentation on bootstrap setup.
 
 ### Environments 👍
 

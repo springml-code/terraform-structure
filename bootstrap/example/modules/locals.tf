@@ -23,7 +23,7 @@ locals {
     }
   }
   initial_projects = {
-    tf-common-project = module.bootstrap_projects["terraform-project-common"].project_id,
+    tf-common-project  = module.bootstrap_projects["terraform-project-common"].project_id,
     common-cloud-build = module.common_projects["cloud-build-common"].project_id
   }
   granular_sa = {
@@ -31,23 +31,23 @@ locals {
       project = module.bootstrap_projects["terraform-project-common"].project_id
       detail  = "Foundation Bootstrap SA. Managed by Terraform."
     }
-    "org"       = {
+    "org" = {
       project = module.bootstrap_projects["terraform-project-common"].project_id
       detail  = "Foundation Organization SA. Managed by Terraform."
     }
-    "env"       = {
+    "env" = {
       project = module.bootstrap_projects["terraform-project-common"].project_id
       detail  = "Foundation Environment SA. Managed by Terraform."
     }
-    "net"       = {
+    "net" = {
       project = module.bootstrap_projects["terraform-project-common"].project_id
       detail  = "Foundation Network SA. Managed by Terraform."
     }
-    "proj"      = {
+    "proj" = {
       project = module.bootstrap_projects["terraform-project-common"].project_id
       detail  = "Foundation Projects SA. Managed by Terraform."
     }
-    "ci-cd"     = {
+    "ci-cd" = {
       project = module.common_projects["cloud-build-common"].project_id
       detail  = "Foundation CI/CD SA. Managed by Terraform"
     }
