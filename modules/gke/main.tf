@@ -32,7 +32,7 @@ module "gke" {
   default_max_pods_per_node         = var.default_max_pods_per_node
   description                       = var.description
   disable_default_snat              = var.disable_default_snat
-  disable_legacy_metadata_endpoints = var.disable_legacy_metadata_endpoints
+  disable_legacy_metadata_endpoints = true
   dns_cache                         = var.dns_cache
 
   enable_binary_authorization        = var.enable_binary_authorization
